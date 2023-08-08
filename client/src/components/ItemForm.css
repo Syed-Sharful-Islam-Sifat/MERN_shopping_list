@@ -4,3 +4,14 @@
     justify-content: center;
     margin-top: 5%;
 }
+
+.item-form button{
+    background-color: black;
+    color: aliceblue;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+    height: 20px;
+    
+}

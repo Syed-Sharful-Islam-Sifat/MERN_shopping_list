@@ -24,31 +24,49 @@ export const getItems = () =>{
     }
 }
 
-export const addItem = (item) =>({
-    type: ADD_ITEM,
-    payload: item,
-})
+export const addItem = (item) =>{
+    return async(dispatch)=>{
+      
+        try {
+            const response = await axios.post('/api/items',item);
+            console.log(response.data)
+            dispatch({
+                type: ADD_ITEM,
+                payload: response.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 
-export const deleteItem = (id)=>({
-    type: DELETE_ITEM,
-    payload: id,
-})
+export const deleteItem = (id)=>{
+    return async(dispatch)=>{
+      
+        try {
+            const response = await axios.delete(`/api/items/${id}`,id);
+            console.log('deleted')
+            dispatch({
+                type: DELETE_ITEM,
+                payload: id
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 
-export const setItemsLoading = () =>({
-    type: ITEMS_LOADING
-})
 
 const initialState = {
     items: []
 }
-
+//reducer
 const itemReducer = (state = initialState , action) =>{
     switch(action.type){
         case GET_ITEMS:
             return{
                 ...state,
                 items:action.payload,
-                loading: false
             }
         case ADD_ITEM:
             return{
@@ -59,7 +77,7 @@ const itemReducer = (state = initialState , action) =>{
            
             return{
                 ...state,
-                items: state.items.filter(item =>item.id!==action.payload)
+                items: state.items.filter(item =>item._id!==action.payload)
             } ;
        
         default:

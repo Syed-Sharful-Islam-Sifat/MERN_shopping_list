@@ -6,19 +6,14 @@ import { addItem } from '../reducers/itemReducer';
 
 const ItemFrom = () => {
   const [itemName,setItemName] = useState("");
-  const[itemId,setItemId] = useState(1);
   const dispatch = useDispatch();
 
 const handleSubmit = (e) =>{
     e.preventDefault();
-
-    setItemId(itemId+1);
-
+    if(itemName){
     dispatch(addItem({
-      id:itemId,
       name: itemName
-      
-    }))
+    }))}
   }
   return (
     <form action="" onSubmit={handleSubmit} className='item-form'>

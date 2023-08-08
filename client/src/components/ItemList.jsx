@@ -18,7 +18,7 @@ const ItemList = () => {
             {state.map(item=>(
                <div className='item-list' key = {item._id}>
                   <li >{item.name}</li>
-                  <button onClick={()=> handleDelete(item.id)}>Delete</button>
+                  <button onClick={()=> handleDelete(item._id)}>Delete</button>
                </div> 
             ))}
          </ul>
