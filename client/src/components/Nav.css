@@ -18,3 +18,20 @@ nav{
     margin-right: 30px;
 }
 
+.dropdown h1{
+    color:aliceblue;
+}
+.name-log{
+    display: flex;
+    gap: 10px
+}
+
+.name-log button{
+    height: 30px;
+    align-self: center;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 3px;
+}

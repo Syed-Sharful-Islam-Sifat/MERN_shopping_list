@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { useDispatch } from 'react-redux';
+import { tokenConfig } from './authReducer';
 // Action types
 const GET_ITEMS = 'GET_ITEMS'
 const ADD_ITEM = 'ADD_ITEM';
 const DELETE_ITEM = 'DELETE_ITEM';
-const ITEMS_LOADING = 'ITEMS_LOADING'
+
 
 //Action Creator
 export const getItems = () =>{
@@ -25,10 +26,10 @@ export const getItems = () =>{
 }
 
 export const addItem = (item) =>{
-    return async(dispatch)=>{
+    return async(dispatch,getState)=>{
       
         try {
-            const response = await axios.post('/api/items',item);
+            const response = await axios.post('/api/items',item,tokenConfig(getState));
             console.log(response.data)
             dispatch({
                 type: ADD_ITEM,
@@ -41,10 +42,10 @@ export const addItem = (item) =>{
 }
 
 export const deleteItem = (id)=>{
-    return async(dispatch)=>{
+    return async(dispatch,getState)=>{
       
         try {
-            const response = await axios.delete(`/api/items/${id}`,id);
+            const response = await axios.delete(`/api/items/${id}`,tokenConfig(getState));
             console.log('deleted')
             dispatch({
                 type: DELETE_ITEM,

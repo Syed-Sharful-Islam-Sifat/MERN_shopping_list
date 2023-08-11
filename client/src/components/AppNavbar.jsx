@@ -1,13 +1,23 @@
 import React from "react";
 import { useState } from "react";
 import './Nav.css'
+import {useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { logout } from "../reducers/authReducer";
 const AppNavbar = () => {
   
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+    const dispatch = useDispatch();
+    const user = useSelector(state=>state.auth.user);
+    console.log('user-->',user);
+    
     const toggleDropdown = () => {
       setIsDropdownOpen(!isDropdownOpen);
     };
+
+    function handleLogout(){
+      dispatch(logout());
+    }
   
     return (
       <nav className="navbar">
@@ -15,14 +25,12 @@ const AppNavbar = () => {
           <span>Shopping</span>
         </div>
           <div className="dropdown">
-            <button onClick={toggleDropdown} className="dropdown-toggle">
-              Dropdown
-            </button>
-            {isDropdownOpen && (
-              <div className="dropdown-menu">
-                <a href="#">Option 1</a>
-              </div>
-            )}
+          {user !== null ?
+            <div className="name-log">
+              <h1>{user.name}</h1>
+              <button onClick={handleLogout}>Logout</button>
+            </div>:null
+          }
           </div>
         
       </nav>

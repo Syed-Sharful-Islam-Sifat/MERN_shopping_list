@@ -1,0 +1,19 @@
+.input-fields{
+    background-color: bisque;
+    width: 20%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px
+
+}
+
+.input-fields button{
+    cursor: pointer;
+    background-color: black;
+    color:aliceblue;
+    border: none;
+    border-radius: 2px;
+}
