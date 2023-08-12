@@ -14,17 +14,39 @@ const Register = () => {
     const dispatch = useDispatch();
     const statereg = useSelector(state=>state.auth);
     const stateerr = useSelector(state=>state.error)
-
+    
+    console.log(stateerr);
     
     const {isAuthenticated} = statereg;
     const {id} = stateerr;
-   
+    
     useEffect(()=>{
         if(id==='REGISTER_FAIL'){
-            setMsg(stateerr.msg.error)
+            setMsg(stateerr.msg.msg);
+          
+        }else{
+            setMsg(null);
         }
     })
-   
+
+    function handleEmail(e){
+    
+        setEmail(e.target.value);
+        dispatch(clearErrors());
+       
+    }
+    function handleName(e){
+    
+        setName(e.target.value);
+        dispatch(clearErrors());
+       
+    }
+    function handlePassword(e)
+    {
+        setPassword(e.target.value);
+        dispatch(clearErrors())
+    }
+
   const handleSubmit = (e) =>{
     e.preventDefault();
     const user = {
@@ -38,21 +60,24 @@ const Register = () => {
   }  
   return (
     <div>
+        {(msg&&!isAuthenticated)?
+           <h1>{msg}</h1> : null
+        }
         <form onSubmit={handleSubmit}>
     <div className='input-fields'>
         <div>
         <label>Name:</label>
-        <input type = 'text' placeholder='Name...' value={name} onChange={(e)=> setName(e.target.value)}/>
+        <input type = 'text' placeholder='Name...' value={name} onChange={handleName}/>
         </div>
          
          <div>
             <label>Email:</label>
-            <input type = 'text' placeholder='Email...' value={email} onChange={(e)=> setEmail(e.target.value)}/>
+            <input type = 'text' placeholder='Email...' value={email} onChange={handleEmail}/>
         </div>
 
         <div>
             <label>Password:</label>
-            <input type = 'text' placeholder='Password...' value={password} onChange={(e)=>setPassword(e.target.value)}/>
+            <input type = 'text' placeholder='Password...' value={password} onChange={handlePassword}/>
         </div>
        
         <button type = 'submit'>Register</button>

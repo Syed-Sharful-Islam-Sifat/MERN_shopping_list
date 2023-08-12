@@ -1,5 +1,6 @@
 
 import { returnErrors } from "./errorReducer"
+import { clearErrors } from "./errorReducer"
 import axios from "axios"
 // Action Types
 const USER_LOADED = 'USER_LOADED'
@@ -71,13 +72,16 @@ export const login = ({email,password}) =>{
   return async (dispatch)=>{
     try{  
     const response = await axios.post('/api/auth/login',body,config);
-    
     dispatch({
       type: LOGIN_SUCCESS,
       payload:response.data
-    })}catch(err){
+    })
+  
+  }catch(err){
       dispatch(returnErrors(err.response.data,err.response.status,'LOGIN_FAIL'))
-      dispatch({type: LOGIN_FAIL})
+      dispatch({
+        type: LOGIN_FAIL
+      });
     }
   }
 }
@@ -110,7 +114,8 @@ const initialState = {
     token: localStorage.getItem('token'),
     isAuthenticated: false,
     isLoading: false,
-    user: null
+    user: null,
+   
 }
 
 //authReducer

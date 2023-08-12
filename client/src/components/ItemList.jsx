@@ -7,7 +7,9 @@ const ItemList = () => {
    const dispatch = useDispatch();
    const state = useSelector(state=>state.items.items);
    const [deleteItemId,setDeleteItemId] = useState(null);
-    
+   const stateAuth = useSelector(state=>state.auth);
+
+   const {isAuthenticated} = stateAuth
 
    const handleDelete = (id) =>{
      dispatch(deleteItem(id));
@@ -15,6 +17,10 @@ const ItemList = () => {
    }
   return (
       <div>
+         {!isAuthenticated?
+         
+          <h1>Please Register or Login to Add or delete items</h1>
+          :
          <ul>
             {state.map(item=>(
                <div className='item-list' key = {item._id}>
@@ -23,6 +29,7 @@ const ItemList = () => {
                </div> 
             ))}
          </ul>
+         }
       </div>
     
   )

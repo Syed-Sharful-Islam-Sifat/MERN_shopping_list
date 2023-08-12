@@ -12,44 +12,61 @@ const Login = () => {
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [msg,setMsg] = useState(null)
+    const [pressed,setPressed] = useState(0);
     const dispatch = useDispatch();
-    const statereg = useSelector(state=>state.auth);
+    const statelog = useSelector(state=>state.auth);
     const stateerr = useSelector(state=>state.error)
 
     
-    const {isAuthenticated} = statereg;
+    
+    const {isAuthenticated} = statelog;
     const {id} = stateerr;
-   
+    
+    
     useEffect(()=>{
+      
         if(id==='LOGIN_FAIL'){
-            setMsg(stateerr.msg.error)
+            setMsg(stateerr.msg.msg);
+            
         }else{
             setMsg(null);
         }
-    })
-   
-  const handleSubmit = (e) =>{
+    },[id,isAuthenticated])
+ 
+ function handleEmail(e){
+    
+  setEmail(e.target.value);
+  dispatch(clearErrors());
+ 
+ }
+ function handlePassword(e)
+ {
+  setPassword(e.target.value);
+  dispatch(clearErrors())
+ }
+const handleSubmit = async (e) => {
     e.preventDefault();
     const user = {
-        email,
-        password
-    }
-    
+      email,
+      password,
+    };
+
     dispatch(login(user));
 
-  }  
+  };  
   return (
     <div>
+      {(msg&&!isAuthenticated)?<h1>{msg}</h1>:null}
      <form onSubmit={handleSubmit}>
     <div className='input-fields'>
          <div>
             <label>Email:</label>
-            <input type = 'text' placeholder='Email...' value={email} onChange={(e)=> setEmail(e.target.value)}/>
+            <input type = 'text' placeholder='Email...' value={email} onChange={handleEmail}/>
         </div>
 
         <div>
             <label>Password:</label>
-            <input type = 'text' placeholder='Password...' value={password} onChange={(e)=>setPassword(e.target.value)}/>
+            <input type = 'text' placeholder='Password...' value={password} onChange={handlePassword}/>
         </div>
        
         <button type = 'submit'>Login</button>
