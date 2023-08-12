@@ -1,3 +1,12 @@
+.header h2{
+    color: green
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+}
+
 .item-list{
     display: flex;
     justify-content: center;

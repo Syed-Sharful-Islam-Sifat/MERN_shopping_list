@@ -1,19 +1,31 @@
+.input-container{
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-self: center;
+    margin-bottom: 50px;
+    flex-direction: column;
+    
+}
+.input-container h3{
+    align-self: center;
+    color: red;
+}
+
 .input-fields{
-    background-color: bisque;
-    width: 20%;
-    height: 150px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px
-
+    height: auto;
+    gap: 10px;
+    background-color: aquamarine;
+    
 }
 
+
 .input-fields button{
-    cursor: pointer;
     background-color: black;
-    color:aliceblue;
-    border: none;
-    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    align-self: center;
 }

@@ -1,19 +1,32 @@
-.input-fields{
-    background-color: bisque;
-    width: 20%;
-    height: 150px;
+.input-container-reg{
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-self: center;
+    flex-direction: column;
+    
+}
+
+.input-container-reg h3{
+    align-self: center;
+    color: red;
+}
+
+.input-fields-reg{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px
-
+    height: auto;
+    gap: 10px;
+    background-color: aquamarine;
+  
+    
 }
 
-.input-fields button{
-    cursor: pointer;
+
+.input-fields-reg button{
     background-color: black;
-    color:aliceblue;
-    border: none;
-    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    align-self: center;
 }

@@ -60,31 +60,36 @@ const Register = () => {
   }  
   return (
     <div>
-        {(msg&&!isAuthenticated)?
-           <h1>{msg}</h1> : null
-        }
-        <form onSubmit={handleSubmit}>
-    <div className='input-fields'>
-        <div>
-        <label>Name:</label>
-        <input type = 'text' placeholder='Name...' value={name} onChange={handleName}/>
-        </div>
-         
-         <div>
-            <label>Email:</label>
-            <input type = 'text' placeholder='Email...' value={email} onChange={handleEmail}/>
+        {!isAuthenticated?
+        <div className='input-container-reg'>
+            {(msg&&!isAuthenticated)?
+            <h3>{msg}</h3> : null
+            }
+            <form onSubmit={handleSubmit}>
+                <div className='input-fields-reg'>
+                    <div>
+                    <label>Name:</label>
+                    <input type = 'text' placeholder='Name...' value={name} onChange={handleName}/>
+                    </div>
+                    
+                    <div>
+                        <label>Email:</label>
+                        <input type = 'text' placeholder='Email...' value={email} onChange={handleEmail}/>
+                    </div>
+
+                    <div>
+                        <label>Password:</label>
+                        <input type = 'text' placeholder='Password...' value={password} onChange={handlePassword}/>
+                    </div>
+                
+                    <button type = 'submit'>Register</button>
+
+                </div>
+            </form> 
         </div>
 
-        <div>
-            <label>Password:</label>
-            <input type = 'text' placeholder='Password...' value={password} onChange={handlePassword}/>
-        </div>
-       
-        <button type = 'submit'>Register</button>
-
-    </div>
- </form> 
-    </div>
+        : null }
+</div>
   )
 }
 

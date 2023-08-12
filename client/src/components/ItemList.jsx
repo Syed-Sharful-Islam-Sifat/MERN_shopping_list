@@ -19,7 +19,9 @@ const ItemList = () => {
       <div>
          {!isAuthenticated?
          
-          <h1>Please Register or Login to Add or delete items</h1>
+        <div className='header'>
+           <h2>Please Login or Register to add items</h2>
+        </div>
           :
          <ul>
             {state.map(item=>(

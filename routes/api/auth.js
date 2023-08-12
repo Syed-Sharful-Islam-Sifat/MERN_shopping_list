@@ -66,7 +66,7 @@ router.post('/register',async (req,res)=>{
    try{
       const user = await User.findOne({email})
 
-      if(user)throw Error('user already exists');
+      if(user)throw Error('user with same email already exists');
       const salt = await bcrypt.genSalt(10);
       if(!salt)throw Error('Something wrong with the bcrypt');
 
@@ -95,7 +95,7 @@ router.post('/register',async (req,res)=>{
         }
       })
    }catch(err){
-    res.status(400).json({error:err.message})
+    res.status(400).json({msg:err.message})
    }
 })
 

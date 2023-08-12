@@ -18,13 +18,15 @@ const handleSubmit = (e) =>{
   }
   return (
     <div>
+       {isAuthenticated ?
       <form action="" onSubmit={handleSubmit} className='item-form'>
         <div className='item-details'>
             <input type = "text" placeholder='Enter an item' onChange={(e)=>setItemName(e.target.value)}/>
             <button type='submit'>Add Item</button>
         </div>
-      </form>
+      </form>: null}
     </div>
+       
   )
 }
 
